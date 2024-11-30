@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 627bf6e5a684c99428bed4808e36b4dd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 247733
+  packageName: Pixelart_Monster_pack1
+  packageVersion: 1.0
+  assetPath: Assets/Pixelart_Monster_pack1/Animation/monster_bat/monster_bat_8.controller
+  uploadId: 569394
