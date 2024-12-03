@@ -42,7 +42,10 @@ public class BulletController : MonoBehaviour
 
         if (coll.CompareTag(targetTag))
         {
-            hitTarget = coll.GetComponent<Airplane>();
+            if (gameObject.CompareTag("Enemy"))
+                hitTarget = EnemyManager.Instance.targetAirplane;
+            else
+                hitTarget = coll.GetComponent<Airplane>();
 
             hitTarget.TakeDamage(bulletDamage);
             DisableGO();

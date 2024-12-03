@@ -42,8 +42,6 @@ public abstract class Enemy : Airplane
     }
     protected override void Die()
     {
-        base.Die();
-        
         if (!isDie)
         {
             EnemyManager.Instance.DisableEnemy(enemyType, this);

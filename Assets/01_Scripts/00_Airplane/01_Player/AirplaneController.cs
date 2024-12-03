@@ -36,7 +36,7 @@ public class AirplaneController : Airplane
             transform.position = (Vector3.right * cur_X) + (Vector3.up * transform.position.y);
         }
     }
-    public override void AirplaneAttack()
+    protected override void AirplaneAttack()
     {
         if (airplaneEvents.InputKey_Attack() && !airplaneData.isAttacking && !isUseSkill)
         {
@@ -61,7 +61,6 @@ public class AirplaneController : Airplane
     private void ResetSkill() => isUseSkill = false;
     protected override void Die()
     {
-        base.Die();
         GameManager.Instance.EndStage(false);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Airplane : MonoBehaviour
+public abstract class Airplane : MonoBehaviour
 {
     public AirplaneData airplaneData;
     public virtual void TakeDamage(float takeAttackDamage)
@@ -11,17 +11,10 @@ public class Airplane : MonoBehaviour
             Die();
         }
     }
-    protected virtual void Die()
-    {
-    }
-    public virtual void AirplaneMove()
-    {
+    protected abstract void Die();
+    public abstract void AirplaneMove();
 
-    }
-    public virtual void AirplaneAttack()
-    {
-
-    }
+    protected abstract void AirplaneAttack();
     public virtual void Heal()
     {
         airplaneData.health = airplaneData.maxHealth;
@@ -36,11 +29,15 @@ public struct AirplaneData
     public float health;
     public float attackDamage;
     public float attackSpeed;
+
     public bool isActive;
+
     public Vector2 attackDir;
+
     public BulletController bulletPrefab;
     public int bulletCount;
     public Transform[] bulletSpawn;
+
     public bool isAttacking;
 
 }

@@ -31,7 +31,7 @@ public class Enemy_Elite : Enemy
             Die();
         }
     }
-    public override void AirplaneAttack()
+    protected override void AirplaneAttack()
     {
         if (!gameObject.activeInHierarchy)
             return;

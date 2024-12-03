@@ -17,8 +17,12 @@ public class Enemy_Range : Enemy
         {
             if (!isOnTarget)
                 isOnTarget = true;
-            airplaneSkills.BasicShot(this, target.position);
+            AirplaneAttack();
         }
+    }
+    protected override void AirplaneAttack()
+    {
+        airplaneSkills.BasicShot(this, target.position);
     }
 
     public override void AirplaneMove()

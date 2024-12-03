@@ -3085,7 +3085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc0f6c1211dfc34418f6e67209e89d4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageCount: 0
+  stageCount: 37
   AllStages:
   - {fileID: 11400000, guid: 81add1e7e5a15ff44a86563e7ab47064, type: 2}
   - {fileID: 11400000, guid: 66ea85be28059334bbeaa2c132bc8ebb, type: 2}

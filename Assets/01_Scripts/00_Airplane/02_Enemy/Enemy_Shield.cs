@@ -16,6 +16,11 @@ public class Enemy_Shield : Enemy
         else
             base.TakeDamage(takeAttackDamage);
     }
+    protected override void AirplaneAttack()
+    {
+        EnemyManager.Instance.targetAirplane.TakeDamage(airplaneData.attackDamage);
+        Die();
+    }
     public override void DetectRange()
     {
         if (!gameObject.activeInHierarchy)
@@ -23,8 +28,7 @@ public class Enemy_Shield : Enemy
 
         if (gameObject.activeInHierarchy && Vector3.Distance(transform.position, target.position) < attackRange)
         {
-            target.GetComponent<Airplane>().TakeDamage(airplaneData.attackDamage);
-            Die();
+            AirplaneAttack();
         }
     }
 }
