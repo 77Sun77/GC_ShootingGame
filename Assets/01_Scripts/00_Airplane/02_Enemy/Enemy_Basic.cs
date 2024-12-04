@@ -7,7 +7,7 @@ public class Enemy_Basic : Enemy
         if (!gameObject.activeInHierarchy)
             return;
 
-        if (gameObject.activeInHierarchy && Vector3.Distance(transform.position, target.position) < attackRange)
+        if (gameObject.activeInHierarchy && Vector3.Distance(transform.position, target.position) < attackRange) // 플레이어와 근접했을 때 공격
         {
             AirplaneAttack();
         }

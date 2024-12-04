@@ -3,44 +3,43 @@ using UnityEngine;
 
 public class AirplaneController : Airplane
 {
-    private AirplaneEvents airplaneEvents = new();
-    private AirplaneSkills airplaneSkills = new();
-    [SerializeField] private MovementData movementData;
-    public BulletController skillLazer;
-    public bool isUseSkill;
-    private float min_X = -2.75f;
-    private float max_X = 2.75f;
-    private float cur_X;
+    private AirplaneEvents airplaneEvents = new(); // 이벤트 구현
+    private AirplaneSkills airplaneSkills = new(); // 스킬 구현
 
-    public HPBar hpBar;
+    [SerializeField] private MovementData movementData; // Movement 클래스를 사용하기 위한 데이터 구조체
+    private float min_X = -2.75f; // 맵 경계 최솟값
+    private float max_X = 2.75f; // 맵 경계 최댓값
+    private float cur_X; // 현재 X 위치
+
+    public HPBar hpBar; // 체력 UI
     private void Start()
     {
         movementData.rigid = GetComponent<Rigidbody2D>();
-        BulletManager.Instance.CreatePlayerBullet(airplaneData.bulletPrefab, airplaneData.bulletCount, "Enemy");
+        BulletManager.Instance.CreatePlayerBullet(airplaneData.bulletPrefab, airplaneData.bulletCount, "Enemy"); // 오브젝트 풀로 초기 총알 생성
         hpBar.gameObject.SetActive(true);
     }
     private void Update()
     {
-        AirplaneMove();
-        AirplaneAttack();
-        SetHPBarPosition();
+        AirplaneMove(); // 이동
+        AirplaneAttack(); // 공격
+        SetHPBarPosition(); // 체력바 위치
     }
     
     public override void AirplaneMove()
     {
         if(movementData.rigid != null)
         {
-            movementData.moveDir = airplaneEvents.InputKey_Move().normalized;
-            BroadcastMessage("ObjMove", movementData);
-            cur_X = Mathf.Clamp(transform.position.x, min_X, max_X);
+            movementData.moveDir = airplaneEvents.InputKey_Move().normalized; // 움직임 키 이벤트를 감지했다면 moveDir에 값이 들어온다
+            BroadcastMessage("ObjMove", movementData); // Movement 컴포넌트의 ObjMove를 브로드캐스팅
+            cur_X = Mathf.Clamp(transform.position.x, min_X, max_X); // 위치 제한
             transform.position = (Vector3.right * cur_X) + (Vector3.up * transform.position.y);
         }
     }
     protected override void AirplaneAttack()
     {
-        if (airplaneEvents.InputKey_Attack() && !airplaneData.isAttacking && !isUseSkill)
+        if (airplaneEvents.InputKey_Attack() && !airplaneData.isAttacking) // 공격 키 이벤트를 감지했다면 True를 반환한다
         {
-            airplaneSkills.BasicShot(this);
+            airplaneSkills.BasicShot(this); // 공격
         }
 
     }
@@ -58,7 +57,6 @@ public class AirplaneController : Airplane
     {
         hpBar.transform.position = transform.position + (Vector3.up*0.5f);
     }
-    private void ResetSkill() => isUseSkill = false;
     protected override void Die()
     {
         GameManager.Instance.EndStage(false);
