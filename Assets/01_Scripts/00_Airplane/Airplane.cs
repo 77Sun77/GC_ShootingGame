@@ -23,7 +23,7 @@ public abstract class Airplane : MonoBehaviour
 }
 
 [System.Serializable]
-public struct AirplaneData  // 적 또는 적군의 데이터
+public struct AirplaneData  // 플레이어 또는 적군의 데이터
 {
     public float maxHealth;
     public float health;
